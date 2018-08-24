@@ -12,5 +12,26 @@
 // ==/UserScript==
 
 $(document).ready(function () {
-    console.log(channel);
+    setTimeout(function () {
+        $('#SettingsTab').append('<h2>Cambridge</h2>');
+        $('#SettingsTab').append('<table><tbody><tr><td><kbd>+</kbd> to type a word rapidly like a human.</td></tr></tbody></table>');
+        $('#SettingsTab').append('<table><tbody><tr><td><kbd>-</kbd> to type a slowly like an alien.</td></tr></tbody></table>');
+
+        $(document).keypress(function(e) {
+            console.log(e.which);
+            switch(e.which) {
+                case 43:
+                    console.log('+');
+                    break;
+                case 45:
+                    console.log('-');
+                    break;
+            }
+        });
+    }, 5000);
+
+
+    /* channel.socket.on("wordRoot", function (a) {
+         console.log(a.toUpperCase());
+     });*/
 });
