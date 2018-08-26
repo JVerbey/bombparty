@@ -9,6 +9,7 @@
 // @match       http://hub.sparklinlabs.com/apps/BombParty/play/*
 // @require     https://code.jquery.com/jquery-3.3.1.min.js
 // @grant       unsafeWindow
+// @run-at      document-idle
 // ==/UserScript==
 
 $(document).ready(function () {
@@ -42,9 +43,7 @@ $(document).ready(function () {
                             }).sort(function (a, b) {
                                 return b.length - a.length;
                             });
-                            console.log(WORDS_HEART);
-                            console.log(WORDS);
-                            
+
                             if (WORDS_HEART.length) {
                                 type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
                             } else if (WORDS.length) {
