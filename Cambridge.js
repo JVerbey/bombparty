@@ -188,11 +188,15 @@ type('BONJOUR', 1);
 String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
 
 
-*/
+var scr = document.createElement("script");
+scr.src = "https://code.jquery.com/jquery-3.3.1.min.js";
+document.body.appendChild(scr);
 
 var array = [];
 $( "#main_ul li" ).each(function( i ) {
-    array.push($(this).text().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase());
+    if($(this).text().trim().indexOf('-') === -1) {
+        array.push($(this).text().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase());
+    }
   });
 JSON.stringify(array);
 
@@ -213,7 +217,6 @@ $.ajax({
                 dataType: 'json',
                 success: function (dictionary) {
                     words = unique(dictionary);
-                    words = words.sort((a, b) => a.localeCompare(b))
+                    words = words.sort((a, b) => a.localeCompare(b));
                 }
-            });
-            JSON.stringify(words);
+            });*/
