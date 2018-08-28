@@ -31,10 +31,13 @@ $(document).on('keypress', function (e) {
 
                     channel.socket.on("wordRoot", function (a) {
                         channel.data.wordRoot = a.toUpperCase();
-                        if (channel.data.actorsByAuthId[app.user.authId]) {
-                            channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                return a.toUpperCase();
-                            });
+
+                        if (channel.data.actors.length) {
+                            if (channel.data.actorsByAuthId[app.user.authId]) {
+                                channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
+                                    return a.toUpperCase();
+                                });
+                            }
                         }
 
                         if (AUTOMATE) {
@@ -182,4 +185,35 @@ $(document).on('keypress', function (e) {
 }
 type('BONJOUR', 1);
 
-String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();*/
+String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
+
+
+*/
+
+var array = [];
+$( "#main_ul li" ).each(function( i ) {
+    array.push($(this).text().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase());
+  });
+JSON.stringify(array);
+
+
+function unique(list) {
+    var result = [];
+    $.each(list, function(i, e) {
+      if ($.inArray(e, result) == -1) result.push(e);
+    });
+    return result;
+  }
+
+var words = [];
+$.ajax({
+                method: 'GET',
+                url: 'https://raw.githubusercontent.com/yerffeog/cambridge/master/fr-FR.js',
+                cache: true,
+                dataType: 'json',
+                success: function (dictionary) {
+                    words = unique(dictionary);
+                    words = words.sort((a, b) => a.localeCompare(b))
+                }
+            });
+            JSON.stringify(words);
