@@ -29,20 +29,53 @@ $(document).on('keypress', function (e) {
                     $('#SettingsTab').append('<h2>Automatic</h2>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="CambridgeAutomate">OFF</button></td></tr></tbody></table>');
 
-                    channel.socket.on("wordRoot", function (a) {
-                        channel.data.wordRoot = a.toUpperCase();
-
-                        if (channel.data.actors.length) {
-                            if (channel.data.actorsByAuthId[app.user.authId]) {
-                                channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                    return a.toUpperCase();
+                    channel.socket.on("failWord", function (a) {
+                        if (app.user.authId === a.playerAuthId) {
+                            setTimeout(function () {
+                                var WORDS = dictionary.filter(function (a) {
+                                    return a.indexOf(channel.data.wordRoot) !== -1;
                                 });
-                            }
-                        }
 
+                                var WORDS_STARTING = WORDS.filter(function (a) {
+                                    return a.indexOf(channel.data.wordRoot) === 0;
+                                });
+
+                                var WORDS_HEART = WORDS.filter(function (a) {
+                                    return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
+                                        return a.toUpperCase();
+                                    }).findIndex(function (b) {
+                                        return a.indexOf(b) !== -1;
+                                    }) !== -1;
+                                });
+
+                                var WORDS_STARTING_HEART = WORDS_STARTING.filter(function (a) {
+                                    return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
+                                        return a.toUpperCase();
+                                    }).findIndex(function (b) {
+                                        return a.indexOf(b) !== -1;
+                                    }) !== -1;
+                                });
+
+                                if (WORDS_STARTING_HEART.length) {
+                                    type(WORDS_STARTING_HEART[Math.floor(Math.random() * WORDS_STARTING_HEART.length)], 1);
+                                }
+                                else if (WORDS_STARTING.length) {
+                                    type(WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)], 1);
+                                }
+                                else if (WORDS_HEART.length) {
+                                    type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
+                                } else if (WORDS.length) {
+                                    type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
+                                }
+
+                            }, 200);
+                        }
+                    });
+
+                    channel.socket.on("setActivePlayerIndex", function (a) {
                         if (AUTOMATE) {
                             if (channel.data.actors.length) {
-                                if (app.user.authId === channel.data.actors[channel.data.activePlayerIndex].authId) {
+                                if (app.user.authId === channel.data.actors[a].authId) {
                                     setTimeout(function () {
                                         var WORDS = dictionary.filter(function (a) {
                                             return a.indexOf(channel.data.wordRoot) !== -1;
@@ -79,10 +112,15 @@ $(document).on('keypress', function (e) {
                                         } else if (WORDS.length) {
                                             type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                         }
-                                    }, 500 + Math.random() * 551);
+
+                                    }, 500 + Math.random() * 751);
                                 }
                             }
                         }
+                    });
+
+                    channel.socket.on("wordRoot", function (a) {
+                        channel.data.wordRoot = a.toUpperCase();
                     });
 
                     $('#CambridgeAutomate').on('click', function (e) {
@@ -157,7 +195,7 @@ $(document).on('keypress', function (e) {
                     function type(string, length) {
                         if (length < string.length + 1) {
                             channel.socket.emit("setWord", { word: string.slice(0, length), validate: string.length === length });
-                            setTimeout(type.bind(null, string, length + 1), 90 + Math.random() * 16);
+                            setTimeout(type.bind(null, string, length + 1), 90 + Math.random() * 31);
                         }
                     }
                 }
