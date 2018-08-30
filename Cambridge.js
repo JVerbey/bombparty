@@ -29,7 +29,7 @@ $(document).on('keypress', function (e) {
                     $('#SettingsTab').append('<h2>Automatic</h2>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="CambridgeAutomate">OFF</button></td></tr></tbody></table>');
 
-                    channel.socket.on("failWord", function (a) {
+                    channel.socket.on('failWord', function (a) {
                         if (app.user.authId === a.playerAuthId) {
                             setTimeout(function () {
                                 var WORDS = dictionary.filter(function (a) {
@@ -72,7 +72,7 @@ $(document).on('keypress', function (e) {
                         }
                     });
 
-                    channel.socket.on("setActivePlayerIndex", function (a) {
+                    channel.socket.on('setActivePlayerIndex', function (a) {
                         if (AUTOMATE) {
                             if (channel.data.actors.length) {
                                 if (app.user.authId === channel.data.actors[a].authId) {
@@ -119,7 +119,7 @@ $(document).on('keypress', function (e) {
                         }
                     });
 
-                    channel.socket.on("wordRoot", function (a) {
+                    channel.socket.on('wordRoot', function (a) {
                         channel.data.wordRoot = a.toUpperCase();
                     });
 
