@@ -14,7 +14,7 @@
 // @downloadURL https://raw.githubusercontent.com/yerffeog/Cambridge/master/Cambridge.js
 // @match       http://bombparty.sparklinlabs.com/play/*
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
-// @grant       unsafeWindow
+// @grant       none
 // @run-at      document-idle
 // ==/UserScript==
 
