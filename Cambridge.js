@@ -2,12 +2,12 @@
 // @name        Cambridge
 // @namespace   Iterer
 // @version     0.1
+// @encoding    utf-8
+// @license     https://raw.githubusercontent.com/yerffeog/Cambridge/master/LICENSE
 // @description A bombparty simple cheat.
 // @author      Geoffrey Migliacci
-// @match       http://bombparty.sparklinlabs.com/
 // @match       http://bombparty.sparklinlabs.com/play/*
-// @match       http://hub.sparklinlabs.com/apps/BombParty/play/*
-// @require     https://code.jquery.com/jquery-3.3.1.min.js
+// @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant       unsafeWindow
 // @run-at      document-idle
 // ==/UserScript==
