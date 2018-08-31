@@ -1,11 +1,17 @@
 // ==UserScript==
 // @name        Cambridge
 // @namespace   Iterer
+// @description A bombparty simple cheat.
+// @author      Geoffrey Migliacci
 // @version     0.1
 // @encoding    utf-8
 // @license     https://raw.githubusercontent.com/yerffeog/Cambridge/master/LICENSE
-// @description A bombparty simple cheat.
-// @author      Geoffrey Migliacci
+// @icon        https://github.com/yerffeog/Cambridge/raw/master/Cambridge.png
+// @homepage    https://github.com/yerffeog/Cambridge
+// @twitterURL  https://twitter.com/yerffeog
+// @supportURL  https://github.com/yerffeog/Cambridge/issues
+// @updateURL   https://raw.githubusercontent.com/yerffeog/Cambridge/master/Cambridge.js
+// @downloadURL https://raw.githubusercontent.com/yerffeog/Cambridge/master/Cambridge.js
 // @match       http://bombparty.sparklinlabs.com/play/*
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant       unsafeWindow
