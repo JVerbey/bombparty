@@ -1,17 +1,17 @@
 // ==UserScript==
-// @name        Cambridge
+// @name        BombParty
 // @namespace   Iterer
 // @description A bombparty simple cheat.
 // @author      Geoffrey Migliacci
 // @version     0.1
 // @encoding    utf-8
-// @license     https://raw.githubusercontent.com/yerffeog/Cambridge/master/LICENSE
-// @icon        https://github.com/yerffeog/Cambridge/raw/master/Cambridge.png
-// @homepage    https://github.com/yerffeog/Cambridge
+// @license     https://raw.githubusercontent.com/yerffeog/BombParty/master/LICENSE
+// @icon        https://github.com/yerffeog/BombParty/raw/master/BombParty.png
+// @homepage    https://github.com/yerffeog/BombParty
 // @twitterURL  https://twitter.com/yerffeog
-// @supportURL  https://github.com/yerffeog/Cambridge/issues
-// @updateURL   https://raw.githubusercontent.com/yerffeog/Cambridge/master/Cambridge.js
-// @downloadURL https://raw.githubusercontent.com/yerffeog/Cambridge/master/Cambridge.js
+// @supportURL  https://github.com/yerffeog/BombParty/issues
+// @updateURL   https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
+// @downloadURL https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
 // @match       http://bombparty.sparklinlabs.com/play/*
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant       none
@@ -23,17 +23,17 @@ $(document).on('keypress', function (e) {
         if (e.which === 178) {
             $.ajax({
                 method: 'GET',
-                url: 'https://raw.githubusercontent.com/yerffeog/cambridge/master/fr-FR.js',
+                url: 'https://raw.githubusercontent.com/yerffeog/BombParty/master/fr-FR.js',
                 cache: true,
                 dataType: 'json',
                 success: function (dictionary) {
                     var AUTOMATE = false;
 
-                    $('#SettingsTab').append('<h2>Cambridge</h2>');
-                    $('#SettingsTab').append('<table><tbody><tr><td><button id="CambridgeGame">Game</button></td></tr></tbody></table>');
-                    $('#SettingsTab').append('<table><tbody><tr><td><button id="CambridgeChat">Chat</button></td></tr></tbody></table>');
+                    $('#SettingsTab').append('<h2>Bot</h2>');
+                    $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyGame">Game</button></td></tr></tbody></table>');
+                    $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyChat">Chat</button></td></tr></tbody></table>');
                     $('#SettingsTab').append('<h2>Automatic</h2>');
-                    $('#SettingsTab').append('<table><tbody><tr><td><button id="CambridgeAutomate">OFF</button></td></tr></tbody></table>');
+                    $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyAutomate">OFF</button></td></tr></tbody></table>');
 
                     channel.socket.on('failWord', function (a) {
                         if (app.user.authId === a.playerAuthId) {
@@ -129,13 +129,13 @@ $(document).on('keypress', function (e) {
                         channel.data.wordRoot = a.toUpperCase();
                     });
 
-                    $('#CambridgeAutomate').on('click', function (e) {
+                    $('#BombPartyAutomate').on('click', function (e) {
                         e.preventDefault();
                         AUTOMATE = !AUTOMATE;
-                        $('#CambridgeAutomate').html(AUTOMATE ? 'ON' : 'OFF');
+                        $('#BombPartyAutomate').html(AUTOMATE ? 'ON' : 'OFF');
                     });
 
-                    $('#CambridgeGame').on('click', function (e) {
+                    $('#BombPartyGame').on('click', function (e) {
                         e.preventDefault();
                         if (channel.data.actors.length) {
                             if (app.user.authId === channel.data.actors[channel.data.activePlayerIndex].authId) {
@@ -179,7 +179,7 @@ $(document).on('keypress', function (e) {
                         }
                     });
 
-                    $('#CambridgeChat').on('click', function (e) {
+                    $('#BombPartyChat').on('click', function (e) {
                         e.preventDefault();
 
                         var WORDS = dictionary.filter(function (a) {
