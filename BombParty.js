@@ -200,7 +200,7 @@ $(document).on('keypress', function (e) {
 
                     function type(string, length) {
                         if (length < string.length + 1) {
-                            channel.socket.emit("setWord", { word: string.slice(0, length), validate: string.length === length });
+                            channel.socket.emit("setWord", { word: (Math.random() * 101)  < 15 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
                             setTimeout(type.bind(null, string, length + 1), 90 + Math.random() * 31);
                         }
                     }
@@ -211,56 +211,3 @@ $(document).on('keypress', function (e) {
         }
     }
 });
-
-
-/*function type(string, length) {
-    if (length < string.length + 1) {
-        //channel.socket.emit("setWord", { word: (Math.random() * 101)  < 15 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
-
-        if((Math.random() * 101)  < 15) {
-            console.log(string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase());
-            setTimeout(type.bind(null, string, length + 1), 100 + Math.random() * 31);
-        }
-        else {
-            console.log(string.slice(0, length));
-            setTimeout(type.bind(null, string, length + 1), 80 + Math.random() * 31);
-        }
-    }
-}
-type('BONJOUR', 1);
-
-String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
-
-
-var scr = document.createElement("script");
-scr.src = "https://code.jquery.com/jquery-3.3.1.min.js";
-document.body.appendChild(scr);
-
-var array = [];
-$( "#main_ul li" ).each(function( i ) {
-    if($(this).text().trim().indexOf('-') === -1) {
-        array.push($(this).text().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase());
-    }
-  });
-JSON.stringify(array);
-
-
-function unique(list) {
-    var result = [];
-    $.each(list, function(i, e) {
-      if ($.inArray(e, result) == -1) result.push(e);
-    });
-    return result;
-  }
-
-var words = [];
-$.ajax({
-                method: 'GET',
-                url: 'https://raw.githubusercontent.com/yerffeog/cambridge/master/fr-FR.js',
-                cache: true,
-                dataType: 'json',
-                success: function (dictionary) {
-                    words = unique(dictionary);
-                    words = words.sort((a, b) => a.localeCompare(b));
-                }
-            });*/
