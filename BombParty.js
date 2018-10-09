@@ -200,7 +200,7 @@ $(document).on('keypress', function (e) {
 
                     function type(string, length) {
                         if (length < string.length + 1) {
-                            channel.socket.emit("setWord", { word: (Math.random() * 101)  < 15 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
+                            channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 5 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
                             setTimeout(type.bind(null, string, length + 1), 90 + Math.random() * 31);
                         }
                     }
