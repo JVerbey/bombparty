@@ -8,7 +8,6 @@
 // @license     https://raw.githubusercontent.com/yerffeog/BombParty/master/LICENSE
 // @icon        https://github.com/yerffeog/BombParty/raw/master/BombParty.png
 // @homepage    https://github.com/yerffeog/BombParty
-// @twitterURL  https://twitter.com/yerffeog
 // @supportURL  https://github.com/yerffeog/BombParty/issues
 // @updateURL   https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
 // @downloadURL https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
