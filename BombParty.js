@@ -18,6 +18,7 @@
 // ==/UserScript==
 
 $(document).on('keypress', function (e) {
+    console.log('BombParty loaded');
     if (channel.hasOwnProperty('data')) {
         if (e.which === 178) {
             $.ajax({
@@ -26,13 +27,52 @@ $(document).on('keypress', function (e) {
                 cache: true,
                 dataType: 'json',
                 success: function (dictionary) {
-                    var AUTOMATE = false;
+                    var USED_WORDS = localStorage.getItem('UsedBombParty') === null ? [] : JSON.parse(localStorage.getItem('UsedBombParty'));
+                    USED_WORDS = USED_WORDS.filter(function (value, index, self) {
+                        return self.indexOf(value) === index;
+                    });
+                    var FAIL_WORDS = localStorage.getItem('FailBombParty') === null ? [] : JSON.parse(localStorage.getItem('FailBombParty'));
+                    FAIL_WORDS = FAIL_WORDS.filter(function (value, index, self) {
+                        return self.indexOf(value) === index;
+                    });
 
+                    var AUTOMATE = false;
+                    var PLAYERS_WORDS = {};
+
+                    Object.keys(channel.data.actorsByAuthId).forEach(function (e) {
+                        PLAYERS_WORDS[e] = "";
+                    });
+
+                    //42["winWord",{"playerAuthId":"guest:43456"}]
+                    //42["failWord",{"playerAuthId":"guest:43432"}]
                     $('#SettingsTab').append('<h2>Bot</h2>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyGame">Game</button></td></tr></tbody></table>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyChat">Chat</button></td></tr></tbody></table>');
                     $('#SettingsTab').append('<h2>Automatic</h2>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyAutomate">OFF</button></td></tr></tbody></table>');
+
+                    //42["addActor",{"authId":"guest:44270","displayName":"Guest 44270","state":"alive","lives":2,"lastWord":"","wordRoot":"","lockedLetters":["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v"]}]
+                    channel.socket.on('addActor', function (a) {
+                        PLAYERS_WORDS[a.authId] = "";
+                        console.log(PLAYERS_WORDS);
+                    });
+
+                    channel.socket.on('setWord', function (a) {
+                        PLAYERS_WORDS[a.playerAuthId] = a.word.toUpperCase();
+                        console.log(PLAYERS_WORDS[a.playerAuthId]);
+                    });
+
+                    channel.socket.on('winWord', function (a) {
+                        USED_WORDS.push(PLAYERS_WORDS[a.playerAuthId]);
+                        localStorage.setItem('UsedBombParty', JSON.stringify(USED_WORDS));
+                    });
+
+                    channel.socket.on('failWord', function (a) {
+                        FAIL_WORDS.push(PLAYERS_WORDS[a.playerAuthId]);
+                        console.log('Fails');
+                        console.log(FAIL_WORDS);
+                        localStorage.setItem('FailBombParty', JSON.stringify(FAIL_WORDS));
+                    });
 
                     channel.socket.on('failWord', function (a) {
                         if (AUTOMATE) {
@@ -40,9 +80,13 @@ $(document).on('keypress', function (e) {
                                 setTimeout(function () {
                                     var WORDS = dictionary.filter(function (a) {
                                         return a.indexOf(channel.data.wordRoot) !== -1;
+                                    }).filter(function (a) {
+                                        return USED_WORDS.indexOf(a) === -1;
+                                    }).filter(function (a) {
+                                        return FAIL_WORDS.indexOf(a) === -1;
                                     });
 
-                                    var WORDS_STARTING = WORDS.filter(function (a) {
+                                    /*var WORDS_STARTING = WORDS.filter(function (a) {
                                         return a.indexOf(channel.data.wordRoot) === 0;
                                     });
 
@@ -60,21 +104,13 @@ $(document).on('keypress', function (e) {
                                         }).findIndex(function (b) {
                                             return a.indexOf(b) !== -1;
                                         }) !== -1;
-                                    });
+                                    });*/
 
-                                    if (WORDS_STARTING_HEART.length) {
-                                        type(WORDS_STARTING_HEART[Math.floor(Math.random() * WORDS_STARTING_HEART.length)], 1);
-                                    }
-                                    else if (WORDS_STARTING.length) {
-                                        type(WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)], 1);
-                                    }
-                                    else if (WORDS_HEART.length) {
-                                        type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
-                                    } else if (WORDS.length) {
+                                    if (WORDS.length) {
                                         type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                     }
 
-                                }, 200);
+                                }, 1);
                             }
                         }
                     });
@@ -86,41 +122,17 @@ $(document).on('keypress', function (e) {
                                     setTimeout(function () {
                                         var WORDS = dictionary.filter(function (a) {
                                             return a.indexOf(channel.data.wordRoot) !== -1;
+                                        }).filter(function (a) {
+                                            return USED_WORDS.indexOf(a) === -1;
+                                        }).filter(function (a) {
+                                            return FAIL_WORDS.indexOf(a) === -1;
                                         });
-
-                                        var WORDS_STARTING = WORDS.filter(function (a) {
-                                            return a.indexOf(channel.data.wordRoot) === 0;
-                                        });
-
-                                        var WORDS_HEART = WORDS.filter(function (a) {
-                                            return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                                return a.toUpperCase();
-                                            }).findIndex(function (b) {
-                                                return a.indexOf(b) !== -1;
-                                            }) !== -1;
-                                        });
-
-                                        var WORDS_STARTING_HEART = WORDS_STARTING.filter(function (a) {
-                                            return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                                return a.toUpperCase();
-                                            }).findIndex(function (b) {
-                                                return a.indexOf(b) !== -1;
-                                            }) !== -1;
-                                        });
-
-                                        if (WORDS_STARTING_HEART.length) {
-                                            type(WORDS_STARTING_HEART[Math.floor(Math.random() * WORDS_STARTING_HEART.length)], 1);
-                                        }
-                                        else if (WORDS_STARTING.length) {
-                                            type(WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)], 1);
-                                        }
-                                        else if (WORDS_HEART.length) {
-                                            type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
-                                        } else if (WORDS.length) {
+    
+                                        if (WORDS.length) {
                                             type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                         }
 
-                                    }, 500 + Math.random() * 751);
+                                    }, 1);
                                 }
                             }
                         }
@@ -145,35 +157,7 @@ $(document).on('keypress', function (e) {
                                     return a.indexOf(channel.data.wordRoot) !== -1;
                                 });
 
-                                var WORDS_STARTING = WORDS.filter(function (a) {
-                                    return a.indexOf(channel.data.wordRoot) === 0;
-                                });
-
-                                var WORDS_HEART = WORDS.filter(function (a) {
-                                    return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                        return a.toUpperCase();
-                                    }).findIndex(function (b) {
-                                        return a.indexOf(b) !== -1;
-                                    }) !== -1;
-                                });
-
-                                var WORDS_STARTING_HEART = WORDS_STARTING.filter(function (a) {
-                                    return channel.data.actorsByAuthId[app.user.authId].lockedLetters.map(function (a) {
-                                        return a.toUpperCase();
-                                    }).findIndex(function (b) {
-                                        return a.indexOf(b) !== -1;
-                                    }) !== -1;
-                                });
-
-                                if (WORDS_STARTING_HEART.length) {
-                                    type(WORDS_STARTING_HEART[Math.floor(Math.random() * WORDS_STARTING_HEART.length)], 1);
-                                }
-                                else if (WORDS_STARTING.length) {
-                                    type(WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)], 1);
-                                }
-                                else if (WORDS_HEART.length) {
-                                    type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
-                                } else if (WORDS.length) {
+                                if (WORDS.length) {
                                     type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                 }
                             }
@@ -186,24 +170,18 @@ $(document).on('keypress', function (e) {
                         var WORDS = dictionary.filter(function (a) {
                             return a.indexOf(channel.data.wordRoot) !== -1;
                         });
-
-                        var WORDS_STARTING = WORDS.filter(function (a) {
-                            return a.indexOf(channel.data.wordRoot) === 0;
-                        });
-
-                        if (WORDS_STARTING.length) {
-                            channel.socket.emit("chatMessage", WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)]);
-                        }
-                        else if (WORDS.length) {
+                        
+                        if (WORDS.length) {
                             channel.socket.emit("chatMessage", WORDS[Math.floor(Math.random() * WORDS.length)]);
                         }
                     });
 
                     function type(string, length) {
-                        if (length < string.length + 1) {
-                            channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 5 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
+                        channel.socket.emit("setWord", { word: string, validate: true });
+                        /*if (length < string.length + 1) {
+                            channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 10 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
                             setTimeout(type.bind(null, string, length + 1), 100 + Math.random() * 31);
-                        }
+                        }*/
                     }
                 }
             });
