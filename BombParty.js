@@ -40,7 +40,7 @@ $(document).on('keypress', function (e) {
                     });
 
                     channel.socket.on('setWord', function (a) {
-                        PLAYERS_WORDS[a.playerAuthId] = a.word.toUpperCase();
+                        
                     });
 
                     channel.socket.on('failWord', function (a) {
