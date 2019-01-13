@@ -55,7 +55,7 @@ $(document).on('keypress', function (e) {
                                         type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                     }
 
-                                }, 1);
+                                }, 2000 + Math.floor(Math.random() * 900) + 100);
                             }
                         }
                     });
@@ -92,17 +92,17 @@ $(document).on('keypress', function (e) {
                                         if (WORDS_STARTING_HEART.length) {
                                             type(WORDS_STARTING_HEART[Math.floor(Math.random() * WORDS_STARTING_HEART.length)], 1);
                                         }
-                                        else if (WORDS_HEART.length) {
-                                            type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
-                                        }
                                         else if (WORDS_STARTING.length) {
                                             type(WORDS_STARTING[Math.floor(Math.random() * WORDS_STARTING.length)], 1);
+                                        }
+                                        else if (WORDS_HEART.length) {
+                                            type(WORDS_HEART[Math.floor(Math.random() * WORDS_HEART.length)], 1);
                                         }
                                         else if (WORDS.length) {
                                             type(WORDS[Math.floor(Math.random() * WORDS.length)], 1);
                                         }
 
-                                    }, 1);
+                                    }, 1100 + Math.floor(Math.random() * 500) + 50);
                                 }
                             }
                         }
@@ -149,7 +149,7 @@ $(document).on('keypress', function (e) {
                     function type(string, length) {
                         if (length < string.length + 1) {
                             channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 10 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
-                            setTimeout(type.bind(null, string, length + 1), 100 + Math.random() * 31);
+                            setTimeout(type.bind(null, string, length + 1), 130 + Math.random() * 41);
                         }
                     }
                 }
