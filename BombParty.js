@@ -23,7 +23,7 @@ $(document).on('keypress', function (e) {
         if (e.which === 178) {
             $.ajax({
                 method: 'GET',
-                url: 'https://raw.githubusercontent.com/yerffeog/BombParty/master/fr-FR.js',
+                url: 'https://raw.githubusercontent.com/yerffeog/BombParty/master/fr-FR.json',
                 cache: true,
                 dataType: 'json',
                 success: function (dictionary) {
