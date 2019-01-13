@@ -40,7 +40,7 @@ $(document).on('keypress', function (e) {
                     });
 
                     channel.socket.on('setWord', function (a) {
-                        
+
                     });
 
                     channel.socket.on('failWord', function (a) {
@@ -147,7 +147,6 @@ $(document).on('keypress', function (e) {
                     });
 
                     function type(string, length) {
-                        channel.socket.emit("setWord", { word: string, validate: true });
                         if (length < string.length + 1) {
                             channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 10 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
                             setTimeout(type.bind(null, string, length + 1), 100 + Math.random() * 31);
