@@ -9,8 +9,8 @@
 // @icon        https://github.com/yerffeog/BombParty/raw/master/BombParty.png
 // @homepage    https://github.com/yerffeog/BombParty
 // @supportURL  https://github.com/yerffeog/BombParty/issues
-// @updateURL   https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
-// @downloadURL https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.js
+// @updateURL   https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.user.js
+// @downloadURL https://raw.githubusercontent.com/yerffeog/BombParty/master/BombParty.user.js
 // @match       http://bombparty.sparklinlabs.com/play/*
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant       none
