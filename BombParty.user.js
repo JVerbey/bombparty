@@ -5,12 +5,12 @@
 // @author      Geoffrey Migliacci
 // @version     0.1
 // @encoding    utf-8
-// @license     https://raw.githubusercontent.com/yerffeog/bombparty/master/LICENSE.md
-// @icon        https://github.com/yerffeog/bombparty/raw/master/BombParty.png
-// @homepage    https://github.com/yerffeog/bombparty
-// @supportURL  https://github.com/yerffeog/bombparty/issues
-// @updateURL   https://raw.githubusercontent.com/yerffeog/bombparty/master/BombParty.user.js
-// @downloadURL https://raw.githubusercontent.com/yerffeog/bombparty/master/BombParty.user.js
+// @license     https://raw.githubusercontent.com/myerffoeg/bombparty/master/LICENSE.md
+// @icon        https://github.com/myerffoeg/bombparty/raw/master/BombParty.png
+// @homepage    https://github.com/myerffoeg/bombparty
+// @supportURL  https://github.com/myerffoeg/bombparty/issues
+// @updateURL   https://github.com/myerffoeg/bombparty/raw/master/BombParty.user.js
+// @downloadURL https://github.com/myerffoeg/bombparty/raw/master/BombParty.user.js
 // @match       http://bombparty.sparklinlabs.com/play/*
 // @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant       none
@@ -23,7 +23,7 @@ $(document).on('keypress', function (e) {
         if (e.which === 178) {
             $.ajax({
                 method: 'GET',
-                url: 'https://raw.githubusercontent.com/yerffeog/bombparty/master/fr-FR.json',
+                url: 'https://raw.githubusercontent.com/myerffoeg/bombparty/master/fr-FR.json',
                 cache: true,
                 dataType: 'json',
                 success: function (dictionary) {
