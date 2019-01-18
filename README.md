@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en" target="blank"><img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto/gigs/97710450/original/0803ce28a28918618dc463fa025d405fdc829820/write-a-tampermonkey-script.png" width="96" height="96" alt="Tampermonkey Logo" /></a>
-  <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Greasemonkey.svg/220px-Greasemonkey.svg.png" width="96" height="96" alt="Greasemonkey Logo" /></a>
+  <a href="https://addons.mozilla.org/fr/firefox/addon/greasemonkey/" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Greasemonkey.svg/220px-Greasemonkey.svg.png" width="96" height="96" alt="Greasemonkey Logo" /></a>
 </p>
 
 <p align="center">
@@ -16,4 +16,4 @@ A small cheat for [BombParty](http://bombparty.sparklinlabs.com/) use the ² key
 Use a userscript manager like [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) on Google Chrome or [Greasemonkey](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Greasemonkey.svg/220px-Greasemonkey.svg.png) on Firefox then install [BombParty.user.js](BombParty.user.js).
 
 ## License
-Bombparty is under a [GNU General Public License](LICENSE.md).
+BombParty is under a [GNU General Public License](LICENSE.md).
