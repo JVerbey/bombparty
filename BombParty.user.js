@@ -29,6 +29,13 @@ $(document).on('keypress', function (e) {
                 success: function (dictionary) {
                     var AUTOMATE = false;
 
+                    function type(string, length) {
+                        if (length < string.length + 1) {
+                            channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 10 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
+                            setTimeout(type.bind(null, string, length + 1), 130 + Math.random() * 41);
+                        }
+                    }
+                    
                     $('#SettingsTab').append('<h2>Bot</h2>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyGame">Game</button></td></tr></tbody></table>');
                     $('#SettingsTab').append('<table><tbody><tr><td><button id="BombPartyChat">Chat</button></td></tr></tbody></table>');
@@ -145,13 +152,6 @@ $(document).on('keypress', function (e) {
                             channel.socket.emit("chatMessage", WORDS[Math.floor(Math.random() * WORDS.length)]);
                         }
                     });
-
-                    function type(string, length) {
-                        if (length < string.length + 1) {
-                            channel.socket.emit("setWord", { word: string.length < length && (Math.random() * 101) < 10 ? string.slice(0, length) + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase() : string.slice(0, length), validate: string.length === length });
-                            setTimeout(type.bind(null, string, length + 1), 130 + Math.random() * 41);
-                        }
-                    }
                 }
             });
 
