@@ -22,4 +22,4 @@ A small cheat for [BombParty](http://bombparty.sparklinlabs.com/) use the ² key
 Use a userscript manager like [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) on Google Chrome or [Greasemonkey](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Greasemonkey.svg/220px-Greasemonkey.svg.png) on Firefox then install [BombParty.user.js](BombParty.user.js).
 
 ## License
-BombParty is under a [GNU General Public License](LICENSE.md).
+BombParty is under a [MIT License](LICENSE.md).
