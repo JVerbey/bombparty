@@ -19,7 +19,7 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  file: PopSauce.user.js
+  file: BombParty.user.js
   skip_cleanup: true
   on:
     tags: true
