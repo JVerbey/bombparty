@@ -1,6 +1,9 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=myerffoeg_bombparty&metric=alert_status)](https://sonarcloud.io/dashboard?id=myerffoeg_bombparty)
-[![Downloads](https://img.shields.io/github/downloads/myerffoeg/bombparty/latest/total)](https://github.com/myerffoeg/bombparty/releases/latest/download/BombParty.user.js) 
-[![PayPal](https://img.shields.io/badge/Donate-PayPal-ff3f59.svg)](https://www.paypal.me/myerffoeg) 
+[![Version](https://img.shields.io/github/v/release/myerffoeg/bombparty?sort=semver)](https://github.com/myerffoeg/bombparty/releases)
+[![License](https://img.shields.io/github/license/myerffoeg/bombparty)](LICENSE.md)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=myerffoeg_popsauce&metric=alert_status)](https://sonarcloud.io/dashboard?id=myerffoeg_popsauce)
+[![Total Downloads](https://img.shields.io/github/downloads/myerffoeg/bombparty/total)](https://github.com/myerffoeg/bombparty/releases/latest/download/BombParty.user.js)
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-ff3f59.svg)](https://www.paypal.me/myerffoeg)
 
 [![Twitter](https://img.shields.io/twitter/follow/myerffoeg.svg?style=social&label=Follow)](https://twitter.com/myerffoeg)
 [![Github](https://img.shields.io/github/followers/myerffoeg.svg?label=Follow&style=social)](https://github.com/myerffoeg)
