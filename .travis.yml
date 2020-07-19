@@ -1,0 +1,28 @@
+language: node_js
+
+sudo: false
+
+dist: trusty
+
+node_js:
+  - '10'
+
+addons:
+  sonarcloud:
+    organization: "myerffoeg"
+    token:
+      secure: "oGglrDpF1xjQ0SzjIvxLtd2bmmCuTi7IYYmlO9ept8P2y62zPUfBhm9KGBY9cLTXfBcjN7OU6ZcIhr83IYh3wW/92bcpGZ2Y6URIE4p9n/NbnGV5yaTL04QhoZHjldx+TebWW1fA5X09cXbp+pOOdj8IJZg2/kqqPYK3IvY4RYf0hDqs0+XpIIJRpsR9C5wVjw7bEu4mbkWEV4kpLi82XiOXCGXOgLwRfx+A7kCl5KR15Ilk0I9i9Gd1kJucSAMWHtxiAp0tPcooBIAVMji+JL25oc2mKeXgAqBy9p8//lWJVNqK6/hV54t5P4R8Wths/U7IVnujdCD0E2XfiIXWNJZmXhmSFzrdAXizsWHqr2EaOi+NxWfnaOuGvnxGFkjCl09AcZNKSg6rx7/A6adKKCkkzGTJ+tyRNkHEstfCRQrz/Bf3BaxZlBmV67iZDEtZ3Qr46PJHQksSWBRGkWOhGanDHqjbH9KNAahKjPeISwIvdgDPLvNYKQdNNyUdD512fLQfipG1ndxnBZqs7tkHLx5wbZNDyn0o7mfdK09g5ngoodlWOT9w4QOjAkB+8oRvqKp1J6VCNLDTOXP49+ysNkFle8u9ZpgJd8Crug3hn/RmM4Vz4QH3rHg893O0vseNXDzRLGBFXrkBGkM1yak8UrLeXKbuc9AncEY9Lsx9dzU="
+
+script:
+  - sonar-scanner
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: PopSauce.user.js
+  skip_cleanup: true
+  on:
+    tags: true
+
+git:
+  depth: 1
