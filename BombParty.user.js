@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        BombParty
 // @namespace   myerffoeg
-// @version     2.0.1
+// @version     2.0.2
 // @author      Geoffrey Migliacci
 // @description A BombParty simple cheat.
 // @homepage    https://github.com/myerffoeg/bombparty
@@ -18,7 +18,7 @@
 
 let configuration = localStorage.getItem('BombpartyConfiguration') === null ? {
     bot: 0,
-    botStart: 1000,
+    botStart: 850,
     botRandomStart: 500,
     typingSpeed: 100,
     typingRandom: 50,
@@ -136,62 +136,32 @@ jQuery(document).ready(() => {
 
                 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
                 const keyMap = {
-                    en: {
-                        A: ['Z', 'S', 'Q'],
-                        B: ['V', 'F', 'G', 'H', 'N'],
-                        C: ['X', 'S', 'D', 'F', 'V'],
-                        D: ['X', 'S', 'Z', 'E', 'R', 'F', 'V', 'C'],
-                        E: ['Z', 'S', 'D', 'F', 'R'],
-                        F: ['C', 'D', 'E', 'R', 'T', 'G', 'B', 'V'],
-                        G: ['V', 'F', 'R', 'T', 'Y', 'H', 'N', 'B'],
-                        H: ['G', 'T', 'Y', 'U', 'J', 'N', 'B'],
-                        I: ['U', 'J', 'K', 'L', 'O'],
-                        J: ['N', 'H', 'Y', 'U', 'I', 'K'],
-                        K: ['J', 'U', 'I', 'O', 'L'],
-                        L: ['K', 'I', 'O', 'P', 'M'],
-                        M: ['L', 'O', 'P'],
-                        N: ['B', 'G', 'H', 'J'],
-                        O: ['I', 'K', 'L', 'M', 'P'],
-                        P: ['O', 'L', 'M'],
-                        Q: ['A', 'Z', 'S', 'X', 'W'],
-                        R: ['E', 'D', 'F', 'G', 'T'],
-                        S: ['A', 'Z', 'E', 'D', 'C', 'X', 'W', 'Q'],
-                        T: ['R', 'F', 'G', 'H', 'Y'],
-                        U: ['Y', 'H', 'J', 'K', 'I'],
-                        V: ['C', 'D', 'F', 'G', 'B'],
-                        W: ['Q', 'S', 'X'],
-                        X: ['W', 'Q', 'S', 'D', 'C'],
-                        Y: ['T', 'G', 'H', 'J', 'U'],
-                        Z: ['A', 'Q', 'S', 'D', 'E']
-                    },
-                    fr: {
-                        A: ['Z', 'S', 'Q'],
-                        B: ['V', 'F', 'G', 'H', 'N'],
-                        C: ['X', 'S', 'D', 'F', 'V'],
-                        D: ['X', 'S', 'Z', 'E', 'R', 'F', 'V', 'C'],
-                        E: ['Z', 'S', 'D', 'F', 'R'],
-                        F: ['C', 'D', 'E', 'R', 'T', 'G', 'B', 'V'],
-                        G: ['V', 'F', 'R', 'T', 'Y', 'H', 'N', 'B'],
-                        H: ['G', 'T', 'Y', 'U', 'J', 'N', 'B'],
-                        I: ['U', 'J', 'K', 'L', 'O'],
-                        J: ['N', 'H', 'Y', 'U', 'I', 'K'],
-                        K: ['J', 'U', 'I', 'O', 'L'],
-                        L: ['K', 'I', 'O', 'P', 'M'],
-                        M: ['L', 'O', 'P'],
-                        N: ['B', 'G', 'H', 'J'],
-                        O: ['I', 'K', 'L', 'M', 'P'],
-                        P: ['O', 'L', 'M'],
-                        Q: ['A', 'Z', 'S', 'X', 'W'],
-                        R: ['E', 'D', 'F', 'G', 'T'],
-                        S: ['A', 'Z', 'E', 'D', 'C', 'X', 'W', 'Q'],
-                        T: ['R', 'F', 'G', 'H', 'Y'],
-                        U: ['Y', 'H', 'J', 'K', 'I'],
-                        V: ['C', 'D', 'F', 'G', 'B'],
-                        W: ['Q', 'S', 'X'],
-                        X: ['W', 'Q', 'S', 'D', 'C'],
-                        Y: ['T', 'G', 'H', 'J', 'U'],
-                        Z: ['A', 'Q', 'S', 'D', 'E']
-                    }
+                    A: ['Z', 'S', 'Q'],
+                    B: ['V', 'F', 'G', 'H', 'N'],
+                    C: ['X', 'S', 'D', 'F', 'V'],
+                    D: ['X', 'S', 'Z', 'E', 'R', 'F', 'V', 'C'],
+                    E: ['Z', 'S', 'D', 'F', 'R'],
+                    F: ['C', 'D', 'E', 'R', 'T', 'G', 'B', 'V'],
+                    G: ['V', 'F', 'R', 'T', 'Y', 'H', 'N', 'B'],
+                    H: ['G', 'T', 'Y', 'U', 'J', 'N', 'B'],
+                    I: ['U', 'J', 'K', 'L', 'O'],
+                    J: ['N', 'H', 'Y', 'U', 'I', 'K'],
+                    K: ['J', 'U', 'I', 'O', 'L'],
+                    L: ['K', 'I', 'O', 'P', 'M'],
+                    M: ['L', 'O', 'P'],
+                    N: ['B', 'G', 'H', 'J'],
+                    O: ['I', 'K', 'L', 'M', 'P'],
+                    P: ['O', 'L', 'M'],
+                    Q: ['A', 'Z', 'S', 'X', 'W'],
+                    R: ['E', 'D', 'F', 'G', 'T'],
+                    S: ['A', 'Z', 'E', 'D', 'C', 'X', 'W', 'Q'],
+                    T: ['R', 'F', 'G', 'H', 'Y'],
+                    U: ['Y', 'H', 'J', 'K', 'I'],
+                    V: ['C', 'D', 'F', 'G', 'B'],
+                    W: ['Q', 'S', 'X'],
+                    X: ['W', 'Q', 'S', 'D', 'C'],
+                    Y: ['T', 'G', 'H', 'J', 'U'],
+                    Z: ['A', 'Q', 'S', 'D', 'E']
                 };
                 let currentlyTyping = 0;
                 let used_words = [];
@@ -199,7 +169,7 @@ jQuery(document).ready(() => {
                 const type = (string, length = 1) => {
                     if (length <= string.length) {
                         if (length < string.length && Math.random() <= (configuration.failByLetter / 100)) {
-                            socket.emit('setWord', string.slice(0, length) + keyMap[rules.dictionaryId.value][string[length - 1]][Math.floor(Math.random() * keyMap[rules.dictionaryId.value][string[length - 1]].length)], false);
+                            socket.emit('setWord', string.slice(0, length) + keyMap[string[length - 1]][Math.floor(Math.random() * keyMap[string[length - 1]].length)], false);
                             currentlyTyping = setTimeout(type.bind(null, string, length), configuration.typingSpeed + (Math.random() * configuration.typingRandom));
                         } else {
                             socket.emit('setWord', string.slice(0, length), string.length === length);
