@@ -9,7 +9,7 @@
 [![Github Followers](https://img.shields.io/github/followers/myerffoeg?logo=github&style=for-the-badge)](https://github.com/myerffoeg)
 [![PayPal](https://img.shields.io/badge/Donate-PayPal-ff3f59.svg?style=for-the-badge)](https://www.paypal.me/myerffoeg)
 
-## Description
+# BombParty
 A small cheat for [BombParty](http://bombparty.sparklinlabs.com/) use the <kbd>Shift Right</kbd> key to load it. To answer automatically to a question, press the <kbd>Shift Right</kbd> key.
 
 ## Installation
